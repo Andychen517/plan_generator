@@ -92,6 +92,7 @@ python overview\make_overview_report.py       → overview_traceability.pdf
 plan_gen\
 ├─ config.py    every tunable knob (feature switches / temperatures / round limits)
 ├─ llm_core.py  LLM infrastructure (client, retrying calls, tolerant JSON parsing, dumps)
+├─ step_a.py    step A (review → method unit cards), shared by both lines, fingerprint-cached
 ├─ goal_gen.py + prompts_goal.py / make_plans.py / make_report.py / translate_en.py
 ├─ overview\    sections 1–2 generator (+ prompts_overview.py + utils_overview.py)
 ├─ design\      research-plan generator (+ prompts_design.py + architecture doc)
@@ -112,16 +113,17 @@ plan_gen\
 > `overview\utils_overview.py`. Main scripts keep only the business flow,
 > each ending in a standard `main()` entry point — read the main script to
 > understand the flow, touch only the prompts file to change generation
-> rules, only config.py to tune behavior. One exception: a few goal_gen
-> templates are assembled conditionally on feature switches and stay inside
-> `goal_gen.py` (commented there).
+> rules, only config.py to tune behavior. One exception: templates assembled
+> conditionally on feature switches travel with their station — step A's live
+> in `step_a.py`, steps C/D's stay inside `goal_gen.py` (commented in both).
 
 ## What each part does
 
 ### goal_gen.py — research objectives (7 steps + human selection)
 1. **A · Structured extraction**: split the review into "method unit cards"
    (method / origin / data / quantitative metrics / limitations). Cached by a
-   content fingerprint; one review is extracted once and shared by both lines.
+   content fingerprint; one review is extracted once and shared by both lines
+   (being shared, this step lives in its own module, `step_a.py`).
 2. **B · Gap mining**: lay all cards side by side and mine research gaps that
    live *between* cards (5 gap types; fewer-but-real over padding; every gap
    must cite its evidence cards).

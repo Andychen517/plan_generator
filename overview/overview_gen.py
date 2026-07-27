@@ -37,7 +37,7 @@ from pathlib import Path
 
 # 本脚本在 goal_gen\overview\ 子目录,把上级目录加进搜索路径才能 import goal_gen
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-import goal_gen as gg          # 复用 call_llm / parse_json / A 步 prompt / OUT_DIR
+import goal_gen as gg          # 复用 call_llm / parse_json / step_a(A 步) / OUT_DIR
 from prompts_overview import *          # 提示词全部集中在 prompts_overview.py
 from utils_overview import *            # 代码 tripwire(precheck/check_numbers)集中在 utils_overview.py
 from utils_overview import _check_uid, _clean_prose   # 下划线名不随 * 导出,显式引入

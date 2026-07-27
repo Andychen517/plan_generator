@@ -2,7 +2,7 @@
 """全链可调参数,一站式集中——改参数只动这个文件。
 
 模型与密钥不在这里:模型名走 .env.local 的 CUSTOM_MODEL,密钥同文件
-(模板见 .env.example);客户端初始化在 goal_gen.py 的基础设施区。
+(模板见 .env.example);客户端初始化在 llm_core.py。
 """
 
 N_GOALS = 3          # 目标数上限(宁缺毋滥,真 gap 有几个就出几个)

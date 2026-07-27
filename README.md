@@ -80,6 +80,7 @@ python overview\make_overview_report.py     → overview_traceability.pdf
 plan_gen\
 ├─ config.py    全链可调参数(开关/温度/轮数,一站式)
 ├─ llm_core.py  LLM 地基(模型客户端/重试调用/JSON 容错解析/存盘),各站共用
+├─ step_a.py    A 步(综述→方法单元卡),goal 与 overview 两线共用,带指纹缓存
 ├─ goal_gen.py + prompts_goal.py / make_plans.py / make_report.py / translate_en.py
 ├─ overview\    前两节生成(overview_gen.py + prompts_overview.py + utils_overview.py + 溯源脚本)
 ├─ design\      研究方案生成(design_gen.py + prompts_design.py + 架构一页纸.md)
@@ -97,14 +98,15 @@ plan_gen\
 > JSON 解析/存盘)集中在 `llm_core.py`,概述站的确定性检查在 `overview\utils_overview.py`;
 > 主脚本只留业务流程,命令行入口统一收在文件末尾的 `main()`。
 > ——想读懂流程看主脚本,想改生成规则只动 prompts 文件,想调行为只动 config。
-> 唯一例外:goal_gen 的 A/C 步部分模板按功能开关条件拼装,留在 goal_gen.py 内
-> (文件里有注释说明)。
+> 唯一例外:按功能开关条件拼装的模板随各自的站走——A 步的在 step_a.py,
+> C/D 步的留在 goal_gen.py 内(两个文件里均有注释说明)。
 
 ## 二、各部分功能详解
 
 ### goal_gen.py —— 研究目标(七步 + 人工选定)
 1. **A 结构化拆解**:把综述按方法拆成"单元卡"(方法/国内外/数据/定量指标/局限)。
-   带缓存指纹,同一份综述只抽一次,overview 与 goal 两条线共用同一套证据。
+   带缓存指纹,同一份综述只抽一次,overview 与 goal 两条线共用同一套证据
+   (因为共用,此步整站独立在 step_a.py)。
 2. **B 对比抽空白**:把所有卡摆在一起横向对照,找"卡与卡之间"的研究空白
    (5 类;宁缺毋滥,每条必须挂上涉及的卡并说清张力)。
 3. **去重**:AI 判断哪些空白是同一件事的不同说法,程序取证据并集、重新编号。

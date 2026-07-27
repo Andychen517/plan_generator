@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""goal_gen 的静态提示词。注:A 步与 C 步的部分模板按 WITH_ORIGIN/WITH_QUANT 开关条件拼装,必须留在 goal_gen.py 里,不在本文件。"""
+"""goal_gen 的静态提示词。注:按 WITH_ORIGIN/WITH_QUANT 开关条件拼装的模板不在本文件——A 步的随站在 step_a.py,C/D 步的留在 goal_gen.py 里。"""
 
 B_SYS = (
     "你是资深科研策略专家,擅长横向对照多个方法、发现研究空白。"
