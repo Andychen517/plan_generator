@@ -43,8 +43,7 @@ from prompts_overview import *          # 提示词全部集中在 prompts_overv
 # 全链固定中文出稿(英文版由 translate_en.py 翻译成稿),直接沿用 goal_gen 的语言指令
 
 OUT_DIR = gg.OUT_DIR
-TEMP_PROSE = 0.4
-MAX_REFLECT_ROUNDS = 2         # 反思->修订 最多两轮,仍不过就标"需人工复核"
+from config import TEMP_OVERVIEW as TEMP_PROSE, MAX_REFLECT_ROUNDS   # 参数集中在 config.py
 
 
 def _llm(system: str, user: str, temperature: float) -> str:

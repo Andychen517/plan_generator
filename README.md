@@ -78,6 +78,7 @@ python overview\make_overview_report.py     → overview_traceability.pdf
 ### 目录结构
 ```
 plan_gen\
+├─ config.py    全链可调参数(开关/温度/轮数,一站式)
 ├─ goal_gen.py + prompts_goal.py / make_plans.py / make_report.py / translate_en.py
 ├─ overview\    前两节生成(overview_gen.py + prompts_overview.py + 溯源脚本)
 ├─ design\      研究方案生成(design_gen.py + prompts_design.py + 架构一页纸.md)
@@ -232,7 +233,7 @@ python tests\test_overview_reflect.py  # 埋 9 类缺陷的坏稿,看三镜头�
 
 ---
 
-## 六、关键参数(在 goal_gen.py 顶部)
+## 六、关键参数(集中在 config.py)
 - `N_GOALS = 3` —— 目标数上限。
 - `WITH_ORIGIN = True` —— A 是否抽"国内外"。
 - `WITH_QUANT = True` —— 是否做整套定量增量;纯定性综述设 False。

@@ -21,7 +21,7 @@ TR_DIR.mkdir(exist_ok=True)
 LANG = "zh"                                    # 从 goal_gen.py 源码读 LANG,不导入(免触发 openai)
 try:
     import re as _re
-    _m = _re.search(r'^LANG\s*=\s*"(\w+)"', (HERE / "goal_gen.py").read_text(encoding="utf-8"), _re.M)
+    _m = _re.search(r'^LANG\s*=\s*"(\w+)"', (HERE / "config.py").read_text(encoding="utf-8"), _re.M)
     if _m:
         LANG = _m.group(1)
 except Exception:

@@ -101,12 +101,14 @@ plan_gen\
 
 ---
 
-> **Code convention: logic and prompts are separated.** Every generation
-> station keeps all its prompt templates in a sibling `prompts_*.py` (pure
-> string constants, zero logic) — read the main script to understand the flow,
-> touch only the prompts file to change generation rules. One exception: a few
-> goal_gen templates are assembled conditionally on feature switches and stay
-> inside `goal_gen.py` (commented there).
+> **Code convention: logic, prompts and parameters are separated.** Every
+> generation station keeps all its prompt templates in a sibling
+> `prompts_*.py` (pure string constants, zero logic), and every tunable knob
+> (feature switches, temperatures, round limits) lives in `config.py` — read
+> the main script to understand the flow, touch only the prompts file to
+> change generation rules, only config.py to tune behavior. One exception:
+> a few goal_gen templates are assembled conditionally on feature switches
+> and stay inside `goal_gen.py` (commented there).
 
 ## What each part does
 

@@ -50,21 +50,8 @@ CLIENT = OpenAI(
     max_retries=0,        # 关掉库自带重试,用我们自己的(下面 call_llm)
 )
 
-N_GOALS = 3          # 目标数上限(宁缺毋滥,真 gap 有几个就出几个)
-
-# ——通用性开关:关掉后 goal_gen 不再强求综述里有这些信息,输出更通用——
-WITH_ORIGIN = True   # A 是否抽"国内外";False=不抽,单元更干净
-WITH_QUANT = True    # 是否做整套"定量增量"(A抽指标/C产增量/D写增量/反思查数值);False=全部跳过
-
-# ——输出语言:全链固定中文出稿;需要英文时由 translate_en.py 翻译成稿(make_plans 里会问)——
-# LANG 常量保留:make_report.py 的中英标签字典按它选择;
-# _OUT_LANG 字符串不可改动——它参与 A 步缓存指纹,改一个字缓存全部失效
-LANG = "zh"
-_OUT_LANG = "所有生成的文字(字段值、正文、理由)一律用中文。"
-
-TEMP_A = 0.2         # A: 忠实抽取
-TEMP_B = 0.8         # B: 发散对比
-TEMP_C = 0.4         # C: 收敛成目标
+from config import *                # 可调参数(开关/温度/上限)全部集中在 config.py
+from config import _OUT_LANG        # 下划线名不随 * 导出,显式引入(参与 A 步缓存指纹)
 
 
 # ------------------------------------------------------------------ 工具函数
