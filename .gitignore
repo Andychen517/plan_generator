@@ -1,0 +1,12 @@
+# secrets
+.env.local
+# generated artifacts of the active topic
+output/
+output_*/
+traceability_and_result/
+# personal case archives & copyrighted source papers (kept local only)
+cases/
+papers/
+# python
+__pycache__/
+*.pyc
