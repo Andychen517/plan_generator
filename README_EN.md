@@ -90,9 +90,9 @@ python overview\make_overview_report.py       → overview_traceability.pdf
 ### Directory layout
 ```
 plan_gen\
-├─ goal_gen.py / make_plans.py / make_report.py / translate_en.py   pipeline
-├─ overview\    sections 1–2 generator
-├─ design\      research-plan generator (+ one-page architecture doc)
+├─ goal_gen.py + prompts_goal.py / make_plans.py / make_report.py / translate_en.py
+├─ overview\    sections 1–2 generator (+ prompts_overview.py)
+├─ design\      research-plan generator (+ prompts_design.py + architecture doc)
 ├─ tests\       negative-control tests + sample reviews
 ├─ docs\        future-work documents (agent-integration roadmap)
 ├─ output\      all intermediate artifacts of the active topic
@@ -100,6 +100,13 @@ plan_gen\
 ```
 
 ---
+
+> **Code convention: logic and prompts are separated.** Every generation
+> station keeps all its prompt templates in a sibling `prompts_*.py` (pure
+> string constants, zero logic) — read the main script to understand the flow,
+> touch only the prompts file to change generation rules. One exception: a few
+> goal_gen templates are assembled conditionally on feature switches and stay
+> inside `goal_gen.py` (commented there).
 
 ## What each part does
 
