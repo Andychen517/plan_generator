@@ -18,9 +18,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import goal_gen as gg          # 复用 call_llm / OUT_DIR
 
-# call_llm 会把 gg._OUT_LANG 追加进系统提示;翻译任务必须覆盖成英文指令,
-# 否则默认的"一律用中文"会把译文摁回中文
-gg._OUT_LANG = "Output the translation in English only."
+# call_llm 会把输出语言指令追加进系统提示;翻译任务必须覆盖成英文指令,
+# 否则默认的"一律用中文"会把译文摁回中文(开关实现在 llm_core.set_out_lang)
+gg.set_out_lang("Output the translation in English only.")
 
 OUT_DIR = gg.OUT_DIR
 

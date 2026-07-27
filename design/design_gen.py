@@ -609,7 +609,7 @@ def gen_design(team, req):
     return final
 
 
-if __name__ == "__main__":
+def main():
     team = ""
     if len(sys.argv) > 1:
         tp = Path(sys.argv[1])
@@ -623,3 +623,7 @@ if __name__ == "__main__":
     req = json.loads(meta.read_text(encoding="utf-8")).get("requirement", "") if meta.exists() else ""
     print(f"模型: {gg.MODEL}")
     gen_design(team, req)
+
+
+if __name__ == "__main__":
+    main()

@@ -79,8 +79,9 @@ python overview\make_overview_report.py     → overview_traceability.pdf
 ```
 plan_gen\
 ├─ config.py    全链可调参数(开关/温度/轮数,一站式)
+├─ llm_core.py  LLM 地基(模型客户端/重试调用/JSON 容错解析/存盘),各站共用
 ├─ goal_gen.py + prompts_goal.py / make_plans.py / make_report.py / translate_en.py
-├─ overview\    前两节生成(overview_gen.py + prompts_overview.py + 溯源脚本)
+├─ overview\    前两节生成(overview_gen.py + prompts_overview.py + utils_overview.py + 溯源脚本)
 ├─ design\      研究方案生成(design_gen.py + prompts_design.py + 架构一页纸.md)
 ├─ tests\       四个负对照测试 + 通用测试综述 + 测试说明
 ├─ docs\        未来工作文档(智能体接入方案)
@@ -90,10 +91,14 @@ plan_gen\
 
 ---
 
-> **代码约定:逻辑与提示词分离。** 每个生成站的提示词集中在同目录的
-> `prompts_*.py`(纯字符串常量,零逻辑)——想读懂流程看主脚本,想改生成规则
-> 只动 prompts 文件。唯一例外:goal_gen 的 A/C 步部分模板按功能开关条件拼装,
-> 留在 goal_gen.py 内(文件里有注释说明)。
+> **代码约定:逻辑 / 提示词 / 参数 / 工程函数,四层分离。**
+> 每个生成站的提示词集中在同目录的 `prompts_*.py`(纯字符串常量,零逻辑);
+> 可调参数(开关/温度/轮数)集中在 `config.py`;调模型的工程函数(客户端/重试/
+> JSON 解析/存盘)集中在 `llm_core.py`,概述站的确定性检查在 `overview\utils_overview.py`;
+> 主脚本只留业务流程,命令行入口统一收在文件末尾的 `main()`。
+> ——想读懂流程看主脚本,想改生成规则只动 prompts 文件,想调行为只动 config。
+> 唯一例外:goal_gen 的 A/C 步部分模板按功能开关条件拼装,留在 goal_gen.py 内
+> (文件里有注释说明)。
 
 ## 二、各部分功能详解
 

@@ -90,8 +90,10 @@ python overview\make_overview_report.py       → overview_traceability.pdf
 ### Directory layout
 ```
 plan_gen\
+├─ config.py    every tunable knob (feature switches / temperatures / round limits)
+├─ llm_core.py  LLM infrastructure (client, retrying calls, tolerant JSON parsing, dumps)
 ├─ goal_gen.py + prompts_goal.py / make_plans.py / make_report.py / translate_en.py
-├─ overview\    sections 1–2 generator (+ prompts_overview.py)
+├─ overview\    sections 1–2 generator (+ prompts_overview.py + utils_overview.py)
 ├─ design\      research-plan generator (+ prompts_design.py + architecture doc)
 ├─ tests\       negative-control tests + sample reviews
 ├─ docs\        future-work documents (agent-integration roadmap)
@@ -101,14 +103,18 @@ plan_gen\
 
 ---
 
-> **Code convention: logic, prompts and parameters are separated.** Every
-> generation station keeps all its prompt templates in a sibling
-> `prompts_*.py` (pure string constants, zero logic), and every tunable knob
-> (feature switches, temperatures, round limits) lives in `config.py` — read
-> the main script to understand the flow, touch only the prompts file to
-> change generation rules, only config.py to tune behavior. One exception:
-> a few goal_gen templates are assembled conditionally on feature switches
-> and stay inside `goal_gen.py` (commented there).
+> **Code convention: logic, prompts, parameters and infrastructure are
+> separated.** Every generation station keeps its prompt templates in a
+> sibling `prompts_*.py` (pure string constants, zero logic); every tunable
+> knob (feature switches, temperatures, round limits) lives in `config.py`;
+> the LLM plumbing (client, retrying calls, tolerant JSON parsing, dumps)
+> lives in `llm_core.py`, and the overview station's deterministic checks in
+> `overview\utils_overview.py`. Main scripts keep only the business flow,
+> each ending in a standard `main()` entry point — read the main script to
+> understand the flow, touch only the prompts file to change generation
+> rules, only config.py to tune behavior. One exception: a few goal_gen
+> templates are assembled conditionally on feature switches and stay inside
+> `goal_gen.py` (commented there).
 
 ## What each part does
 
