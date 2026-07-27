@@ -26,6 +26,29 @@ the block before the document counts as deliverable.
 > edition of the final plan** (`plan_final_en.pdf`); the Chinese version and
 > its review checklist remain authoritative.
 
+The first two stages (web retrieval and the reflection+revision pass) live in
+the sister repository
+**[openprovhop_reflection](https://github.com/Andychen517/openprovhop_reflection)**
+— this pipeline consumes the review it produces. Plain-language map of the
+whole chain:
+
+```mermaid
+flowchart TD
+    subgraph UP["openprovhop_reflection (upstream repo)"]
+        A["1 · Web research<br/>search literature, draft a review"] --> B["2 · Self-review & revise<br/>check every claim against evidence"]
+    end
+    B --> C["3 · Manual hand-off<br/>save the review body as txt"]
+    C --> D
+    subgraph PG["this repo: plan_gen"]
+        D["4 · Proposal sections 1-2<br/>needs & status, three-lens review"] --> E["5 · Research objectives<br/>mine gaps, filter, human picks one"]
+        E --> F["6 · Research plan<br/>1 identify field  2 pin task/data (human)<br/>3 derive experiments  4 write  5 verify"]
+        F --> G["7 · English edition (optional)<br/>faithful translation of the final draft"]
+        G --> H["8 · Assemble the PDF<br/>four sections + review checklist"]
+    end
+    classDef human fill:#fff3cd,stroke:#c9a227,color:#5c4a00;
+    class C human;
+```
+
 ---
 
 ## Quick start

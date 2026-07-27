@@ -15,6 +15,27 @@
 每个生成环节都是同一个质量套路:**AI 起草 → AI 自查修改 → 程序核对 → 人来把关**。
 所有成稿末尾都带【人工复核清单】——机器把拿不准的列出来,逐条处理完删掉才算交稿。
 
+上游两步(联网检索与反思修订)由姊妹仓库
+**[openprovhop_reflection](https://github.com/Andychen517/openprovhop_reflection)**
+完成——本管线吃它产出的综述报告。全链白话流程图:
+
+```mermaid
+flowchart TD
+    subgraph UP["openprovhop_reflection(上游仓库)"]
+        A["1 · 联网检索出综述<br/>自动搜索文献,汇成综述草稿"] --> B["2 · 报告自查修订<br/>对照证据逐句检查后修改"]
+    end
+    B --> C["3 · 人工转交<br/>报告正文另存为综述 txt"]
+    C --> D
+    subgraph PG["本仓库 plan_gen"]
+        D["4 · 写申报书前两节<br/>需求分析 · 研究现状,三道审查"] --> E["5 · 提炼研究目标<br/>找空白→筛选→成稿,人选定一个"]
+        E --> F["6 · 展开成研究方案<br/>①认领域 ②定钉子(人确认)<br/>③程序配实验 ④写四节 ⑤核查"]
+        F --> G["7 · 翻译英文(可选)<br/>照中文定稿逐段翻译"]
+        G --> H["8 · 拼装成申报书 PDF<br/>四部分合一,附待复核清单"]
+    end
+    classDef human fill:#fff3cd,stroke:#c9a227,color:#5c4a00;
+    class C human;
+```
+
 ---
 
 ## 一、快速开始
