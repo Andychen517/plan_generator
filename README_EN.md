@@ -280,4 +280,7 @@ Artifacts go to `output\test_run\` and never touch real outputs.
 - Tentative targets are model proposals; you and your advisor own them.
 - The system reproduces gaps the review implies; it does not yet invent
   directions with no textual trace.
-- Agent-integration roadmap: see `cases\education\智能体.txt` (Chinese).
+- Agent-integration roadmap: see
+  [docs/智能体接入方案.txt](docs/智能体接入方案.txt) (Chinese; a three-level
+  plan — dispatcher layer first, per-station agents second, never full
+  agentification — with the evaluation methodology to prove each level's worth).
