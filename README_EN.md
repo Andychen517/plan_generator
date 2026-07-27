@@ -94,8 +94,7 @@ plan_gen\
 ├─ overview\    sections 1–2 generator
 ├─ design\      research-plan generator (+ one-page architecture doc)
 ├─ tests\       negative-control tests + sample reviews
-├─ cases\       archived end-to-end case studies
-├─ papers\      source literature (copyrighted, do not redistribute)
+├─ docs\        future-work documents (agent-integration roadmap)
 ├─ output\      all intermediate artifacts of the active topic
 └─ traceability_and_result\   reports and final PDFs
 ```

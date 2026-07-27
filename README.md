@@ -82,8 +82,7 @@ plan_gen\
 ├─ overview\    前两节生成(overview_gen.py + 溯源脚本)
 ├─ design\      研究方案生成(design_gen.py + 架构一页纸.md)
 ├─ tests\       四个负对照测试 + 通用测试综述 + 测试说明
-├─ cases\       完整案例归档(education 教育全链路 / deicing 除冰全链路)
-├─ papers\      源文献 PDF(有版权,勿外发)
+├─ docs\        未来工作文档(智能体接入方案)
 ├─ output\      当前活跃课题的全部中间产物与成稿
 └─ traceability_and_result\   溯源报告与方案 PDF
 ```
@@ -211,12 +210,8 @@ python design\design_gen.py team.txt    # 额外喂团队/设备/数据材料
 
 ## 四、现成的测试综述
 - `tests\test_review_imputation.txt` —— 时序缺失值插补综述(中立、多空白,多目标)
-- `cases\deicing\test_review_deicing.txt` —— 电磁脉冲除冰综述(有数字,能出真定量增量)
 - `tests\test_review_ml.txt` —— 机器学习预测儿童词汇(单目标复现)
 - `tests\test_review.txt` —— 教育惩戒(纯定性,测防幻觉)
-
-完整案例归档在 `cases\`:`cases\education\`(教育全链路:源报告/源文献/design
-版本史/结果 PDF/答辩走查文集),`cases\deicing\`(除冰全链路归档)。
 
 ---
 
